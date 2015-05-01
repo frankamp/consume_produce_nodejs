@@ -1,0 +1,27 @@
+{
+    "name": "consumer_producer",
+    "description": "demo",
+    "version": "1.0.0",
+    "author": "Josh Frankamp <frankamp@gmail.com>",
+    "license": "MIT",
+    "repository": "frankamp/consume_produce_nodejs",
+    "homepage": "",
+    "dependencies": {
+        "connect": "~3.3.5"
+    },
+    "devDependencies": {
+        "mocha": "~2.2.1",
+        "supertest": "~0.15.0"
+    },
+    "engines": {
+        "node": ">= 0.10.0"
+    },
+    "files": [
+        "Readme.md",
+        "consumer.js",
+        "producer.js"
+    ],
+    "scripts": {
+        "test": "mocha"
+    }
+}
