@@ -9,7 +9,7 @@ function makeRandomMathProblem() {
     var num2 = randomIntFromInterval(1, 20).toString();
     console.log('/' + num1 + '+' + num2 + '=');
     http.get({
-        host: '127.0.0.1',
+        host: 'consumer',
         port: 3000,
         path: '/' + num1 + '+' + num2 + '='
     }, function(response) {

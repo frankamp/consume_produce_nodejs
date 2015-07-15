@@ -3,6 +3,7 @@ var http = require('http')
 var url = require('url')
 exports.app = connect()
 
+console.log("OK starting")
 // respond to all requests
 exports.app.use(function(req, res){
   var parsed_url = url.parse(req.url);
@@ -13,11 +14,22 @@ exports.app.use(function(req, res){
     var answer = parseInt(matches[1]) + parseInt(matches[2])
   } else {
     res.writeHead(400, {'Content-Type': 'application/json' });
-    res.end(JSON.stringify({'error': 'invalid format'}));
+    res.end(JSON.stringify({'error': 'invalid format'}) + "\n");
   }
   res.writeHead(200, {'Content-Type': 'application/json'});
-  res.end(JSON.stringify({'answer': answer}));
+  res.end(JSON.stringify({'answer': answer}) + "\n");
 })
 
+exitOnSignal('SIGINT');
+exitOnSignal('SIGTERM');
+process.stdin.resume();
+
+function exitOnSignal(signal) {
+  process.on(signal, function() {
+    console.log('\ncaught ' + signal + ', exiting');
+    process.exit(1);
+  });
+}
 //create node.js http server and listen on port
 http.createServer(exports.app).listen(3000);
+console.log("listening on port 3000");
